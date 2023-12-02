@@ -10,9 +10,13 @@ het tussentijds niet hoeven uploaden van andere programmas: die kunnen we dan ge
 Als we dit willen doen moeten we alles hieronder kopen:
 
 [Arduino MKR Zero](https://www.antratek.nl/arduino-mkr-zero)
+
 [Batterij](https://www.antratek.nl/polymer-lithium-ion-battery-2000mah)
+
 [Versterker](https://www.vanallesenmeer.nl/LM386-Low-Voltage-Audio-Power-Amplifier)
+
 [Speaker](https://www.vanallesenmeer.nl/Mini-Metal-Speaker-8-ohm-0,5W-van-adafruit-1890)
+
 [SD](https://www.antratek.nl/32gb-microsdhc-card-sd-adapter)
 
 Voor de nodige transistors en weerstanden moeten we eerst maar op school kijken wat er allemaal is.
