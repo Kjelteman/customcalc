@@ -1,5 +1,4 @@
 //SELECTIEPRINCIPE --> Hier heb ik de potentiometer zo gemaakt dat als die rechtsom gedraaid is, deze 'bevestigd'.
-
 int analogSelect = A0;
 int analogValue = A1;
 int selector = 0;
@@ -21,12 +20,12 @@ void setup() {
 
 void loop() {
   selector = analogRead(analogSelect);
-  if(selector>750){
-    Serial.println("Nothing here");
+  if(selector<250){
+    Serial.println("Bevestig gebruik berekening 1.");
     delay(2000);
   }
-  if(selector<250){
-    Serial.println("Wait up!");
+  if(selector>750){
+    Serial.println("Voer waarde voor term 3 in");
     	int selectedVal = analogRead(analogValue);
     	int a = 2;
         int b = 1;
@@ -35,7 +34,7 @@ void loop() {
     Serial.println(c);
     delay(2000);
     selector = analogRead(analogSelect);
-    if(selector>750){
+    if(selector<250){
     	RS = Berekening1(a, b, c);
       	Serial.print("The answer to your equation is:");
      	Serial.println(RS);
