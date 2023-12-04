@@ -1,4 +1,4 @@
-//SELECTIEPRINCIPE --> Hier heb ik de potentiometer zo gemaakt dat als die rechtsom gedraaid is, deze 'bevestigd'.
+//SELECTIEPRINCIPE --> Hier heb ik de potentiometer (zou de slider worden op A0) zo gemaakt dat als die rechtsom gedraaid is, deze 'bevestigd'.
 int analogSelect = A0;
 int analogValue = A1;
 int selector = 0;
