@@ -19,12 +19,12 @@ float Berekening1(float radius1, float radius2, int hoogte1, float hoogte2){
 float Antwoord1;
 //Variabelen voor Berekening 2
 int diametercilinder2;
-
-float hoogtecilinder2(int volume2, int diametercilinder2){
+float volume2 = 1000000;//mm3
+float hoogtecilinder2(float volume2, int diametercilinder2){
 	float h = volume2/(M_PI*(1.0/4.0)*(diametercilinder2*diametercilinder2));
 	return h;
 	}
-float oppervlaktenblik2(int volume2, int diametercilinder2, float hoogtecilinder2){
+float oppervlaktenblik2(int diametercilinder2, float hoogtecilinder2){
 	float O = 2.0*M_PI*((0.5*diametercilinder2)*(0.5*diametercilinder2))+2.0*M_PI*(0.5*diametercilinder2)*hoogtecilinder2;  
       return O;
 	}
@@ -122,11 +122,10 @@ berekening2stap1:
     Serial.print("Uw gekozen waarde is:");Serial.println(diametercilinder2);
 	  
 berekening2stap2:
-    int volume2 = 1000000;//mm3
     delay(2000);
     Serial.print("Bij een diameter van "); Serial.print(diametercilinder2); Serial.print("mm en een volume van "); 
-    Serial.print(volume2); Serial.print("mm3, is de hoogte van de cilinder"); Serial.println(hoogtecilinder2(volume2, diametercilinder2));
-	  ////WAAAROM DOET VOLUME2 ZO FUCKING KUT
+    Serial.print(volume2/1000000); Serial.print(" liter, is de hoogte van de cilinder "); 
+    Serial.print(hoogtecilinder2(volume2, diametercilinder2)); Serial.println("mm.");
     if(selector < 250){
       goto berekening1stap1;
   }
