@@ -41,16 +41,17 @@ void setup() {
 }
 
 void loop() {
-  mainmenu:
+mainmenu:
   delay(2000);
   Serial.println("Selecteer berekening");
   selector = analogRead(analogSelect);
   draaiert = analogRead(analogValue)/204.6;
   Serial.println(draaiert + 1);
+//Berekening 1	
   if(selector>750 && draaiert==0){
     Serial.println("Bevestiging gebruik berekening 1.");
     Serial.println("Bereken het volume van een afgeknotte cirkel");
-	berekening1stap1:
+berekening1stap1:
     delay(2000);
     Serial.println("Voer waarde voor de diameter van het grondvlak in");
     
@@ -65,7 +66,7 @@ void loop() {
       goto mainmenu;
     }
     Serial.print("Uw gekozen waarde is:");Serial.println(diametergrond1);
-    berekening1stap2:
+berekening1stap2:
     delay(2000);
     Serial.println("Voer waarde voor de diameter van het bovenvlak in");
     
@@ -102,6 +103,7 @@ void loop() {
     Serial.print("Het volume van uw gekozen kegel is:"); Serial.print(Antwoord1);Serial.println("cm3");
     delay(2000);
   }
+//Berekening 2
   if(selector>750 && draaiert==1){
     Serial.println("Bevestiging berekening 2");
     if(selector < 250){
