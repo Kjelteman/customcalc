@@ -9,22 +9,17 @@ int diametergrond1; //Onderkant van de kegel
 int diameterboven1; //Bovenzijde kegel
 int hoogte1; //Hoogte van afgeknotte kegel
 float hoogte2(float radius2, int hoogte1, float radius1){
-  	float h = (radius2*hoogte1)/(radius1-radius2);
-  	return h;
+	return (radius2*hoogte1)/(radius1-radius2);
 	}
 float Berekening1(float radius1, float radius2, int hoogte1, float hoogte2){
-  	float AntwoordTussen1;
-  	float AntwoordTussen2;
-  	float AntwoordEind1;
-  	AntwoordTussen1 = (1.0/3.0)*M_PI*(radius1*radius1)*(hoogte1+hoogte2);
- 	 AntwoordTussen2 = (1.0/3.0)*M_PI*(radius2*radius2)*(hoogte2);
-  	AntwoordEind1 = AntwoordTussen1 - AntwoordTussen2;
-  	return AntwoordEind1;
+  	float AntwoordTussen1 = (1.0/3.0)*M_PI*(radius1*radius1)*(hoogte1+hoogte2);
+ 	float AntwoordTussen2 = (1.0/3.0)*M_PI*(radius2*radius2)*(hoogte2);
+  	return AntwoordTussen1 - AntwoordTussen2;
 	}
 float Antwoord1;
 //Variabelen voor Berekening 2
 int diametercilinder2;
-int volume2 = 1000;//cm3
+
 float hoogtecilinder2(int volume2, int diametercilinder2){
 	float h = volume2/(M_PI*(1.0/4.0)*(diametercilinder2*diametercilinder2));
 	return h;
@@ -41,19 +36,21 @@ void setup() {
 }
 
 void loop() {
+//MAIN MENU
 mainmenu:
   delay(2000);
   Serial.println("Selecteer berekening");
   selector = analogRead(analogSelect);
   draaiert = analogRead(analogValue)/204.6;
   Serial.println(draaiert + 1);
-//Berekening 1	
+//BEREKENING 1
   if(selector>750 && draaiert==0){
     Serial.println("Bevestiging gebruik berekening 1.");
     Serial.println("Bereken het volume van een afgeknotte cirkel");
+	  
 berekening1stap1:
     delay(2000);
-    Serial.println("Voer waarde voor de diameter van het grondvlak in");
+    Serial.println("Voer waarde voor de diameter van het grondvlak in (cm)");
     
     do {
       diametergrond1 = map(analogRead(analogValue),0,1023,0,50);
@@ -66,9 +63,10 @@ berekening1stap1:
       goto mainmenu;
     }
     Serial.print("Uw gekozen waarde is:");Serial.println(diametergrond1);
+	  
 berekening1stap2:
     delay(2000);
-    Serial.println("Voer waarde voor de diameter van het bovenvlak in");
+    Serial.println("Voer waarde voor de diameter van het bovenvlak in (cm)");
     
     do {
       diameterboven1 = map(analogRead(analogValue),0,1023,0,25);
@@ -83,7 +81,7 @@ berekening1stap2:
     Serial.print("Uw gekozen waarde is:");Serial.println(diameterboven1);
     delay(2000);
 	  
-    Serial.println("Voer waarde voor de hoogte van de afgeknotte kegel in");
+    Serial.println("Voer waarde voor de hoogte van de afgeknotte kegel in (cm)");
     
     do {
       hoogte1 = map(analogRead(analogValue),0,1023,1,100);
@@ -103,13 +101,34 @@ berekening1stap2:
     Serial.print("Het volume van uw gekozen kegel is:"); Serial.print(Antwoord1);Serial.println("cm3");
     delay(2000);
   }
-//Berekening 2
+//BEREKENING 2
   if(selector>750 && draaiert==1){
-    Serial.println("Bevestiging berekening 2");
+    Serial.println("Bevestiging gebruik berekening 2");
+    Serial.println("Optimalisering van plaatmateriaal");
+	  
+berekening2stap1:
+    delay(2000);
+    Serial.println("Voer waarde voor de diameter de cilinder in (mm)");
+    do {
+      diametercilinder2 = map(analogRead(analogValue),0,1023,75,125);
+      Serial.println(diametercilinder2);
+      selector = analogRead(analogSelect);
+      delay(2000);
+      }  
+    while (selector < 750 && selector > 250);
     if(selector < 250){
       goto mainmenu;
     }
+    Serial.print("Uw gekozen waarde is:");Serial.println(diametercilinder2);
+	  
+berekening2stap2:
+    int volume2 = 1000000;//mm3
     delay(2000);
+    Serial.print("Bij een diameter van "); Serial.print(diametercilinder2); Serial.print("mm en een volume van "); 
+    Serial.print(volume2); Serial.print("mm3, is de hoogte van de cilinder"); Serial.println(hoogtecilinder2(volume2, diametercilinder2));
+	  ////WAAAROM DOET VOLUME2 ZO FUCKING KUT
+    if(selector < 250){
+      goto berekening1stap1;
   }
   if(selector>750 && draaiert==2){
     Serial.println("Bevestiging berekening 3");
@@ -140,3 +159,4 @@ berekening1stap2:
     delay(2000);
   }
  }
+}
