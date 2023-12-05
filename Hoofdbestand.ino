@@ -23,8 +23,15 @@ float Berekening1(float radius1, float radius2, int hoogte1, float hoogte2){
 	}
 float Antwoord1;
 //Variabelen voor Berekening 2
-
-
+int diametercilinder2;
+int volume2 = 1000;//cm3
+float hoogtecilinder(volume2, diametercilinder2){
+	float h = volume2/(M_PI*(1/4)*(diametercilinder2*diametercilinder2);
+	return h;
+	}
+float omtrek2(volume2, diametercilinder2, hoogtecilinder){
+	O = 2*M_PI*
+	//HIERZO HHHHAHHAHAHAHAHA
 
 //////
 void setup() {
@@ -46,7 +53,7 @@ void loop() {
     Serial.println("Voer waarde voor de diameter van het grondvlak in");
     
     do {
-      diametergrond1 = analogRead(analogValue)/20.46;
+      diametergrond1 = map(analogRead(analogValue),0,1023,0,50);
       Serial.println(diametergrond1);
       selector = analogRead(analogSelect);
       delay(2000);
@@ -60,7 +67,7 @@ void loop() {
     Serial.println("Voer waarde voor de diameter van het bovenvlak in");
     
     do {
-      diameterboven1 = analogRead(analogValue)/40.92;
+      diameterboven1 = map(analogRead(analogValue),0,1023,0,25);
       Serial.println(diameterboven1);
       selector = analogRead(analogSelect);
       delay(2000);
@@ -74,7 +81,7 @@ void loop() {
     Serial.println("Voer waarde voor de hoogte van de afgeknotte kegel in");
     
     do {
-      hoogte1 = analogRead(analogValue)/10.23;
+      hoogte1 = map(analogRead(analogValue),0,1023,1,100);
       Serial.println(hoogte1);
       selector = analogRead(analogSelect);
       delay(2000);
