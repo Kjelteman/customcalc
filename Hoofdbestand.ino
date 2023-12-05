@@ -25,13 +25,14 @@ float Antwoord1;
 //Variabelen voor Berekening 2
 int diametercilinder2;
 int volume2 = 1000;//cm3
-float hoogtecilinder(volume2, diametercilinder2){
-	float h = volume2/(M_PI*(1/4)*(diametercilinder2*diametercilinder2);
+float hoogtecilinder2(int volume2, int diametercilinder2){
+	float h = volume2/(M_PI*(1.0/4.0)*(diametercilinder2*diametercilinder2));
 	return h;
 	}
-float omtrek2(volume2, diametercilinder2, hoogtecilinder){
-	O = 2*M_PI*
-	//HIERZO HHHHAHHAHAHAHAHA
+float oppervlaktenblik2(int volume2, int diametercilinder2, float hoogtecilinder2){
+	float O = 2.0*M_PI*((0.5*diametercilinder2)*(0.5*diametercilinder2))+2.0*M_PI*(0.5*diametercilinder2)*hoogtecilinder2;  
+      return O;
+	}
 
 //////
 void setup() {
@@ -49,6 +50,7 @@ void loop() {
   if(selector>750 && draaiert==0){
     Serial.println("Bevestiging gebruik berekening 1.");
     Serial.println("Bereken het volume van een afgeknotte cirkel");
+	berekening1stap1:
     delay(2000);
     Serial.println("Voer waarde voor de diameter van het grondvlak in");
     
@@ -63,6 +65,7 @@ void loop() {
       goto mainmenu;
     }
     Serial.print("Uw gekozen waarde is:");Serial.println(diametergrond1);
+    berekening1stap2:
     delay(2000);
     Serial.println("Voer waarde voor de diameter van het bovenvlak in");
     
@@ -72,12 +75,13 @@ void loop() {
       selector = analogRead(analogSelect);
       delay(2000);
       }  
-    while (selector < 750);
+    while (selector < 750 && selector > 250);
     if(selector < 250){
-      goto mainmenu;
+      goto berekening1stap1;
     }
     Serial.print("Uw gekozen waarde is:");Serial.println(diameterboven1);
     delay(2000);
+	  
     Serial.println("Voer waarde voor de hoogte van de afgeknotte kegel in");
     
     do {
@@ -86,9 +90,9 @@ void loop() {
       selector = analogRead(analogSelect);
       delay(2000);
       }  
-    while (selector < 750);
+    while (selector < 750 && selector > 250);
     if(selector < 250){
-      goto mainmenu;
+      goto berekening1stap2;
     }
     Serial.print("Uw gekozen waarde is:");Serial.println(hoogte1);
     delay(2000);
@@ -133,4 +137,4 @@ void loop() {
     }
     delay(2000);
   }
-}
+ }
