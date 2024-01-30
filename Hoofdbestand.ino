@@ -1,6 +1,9 @@
 //Globale variabelen
-int analogSelect = A0;
-int analogValue = A1;
+#include "AudioZero.h";
+#include "SPI.h";
+#include "SD.h";
+int analogSelect = A5;
+int analogValue = A6;
 int selector;
 int draaiert;
 
@@ -32,12 +35,37 @@ float oppervlaktenblik2(int diametercilinder2, float hoogtecilinder2){
 //////
 void setup() {
   Serial.begin(9600);
+  while (!Serial){
+    ;
+  }
   Serial.println("Welkom");
+  Serial.print("Voorbereiden SD kaart...");
+
+  if (!SD.begin()) {
+
+    Serial.println(" Mislukt");
+
+    while(true);
+
+  }
+
+  Serial.println("Gereed.");
+  AudioZero.begin(88200);  
+
+  File Opstart = SD.open("Opstart.wav");
+   if (!Opstart) {
+    Serial.println("error openen opstart jingle :(");
+  }
+  Serial.print("Opstarten");
+  // until the file is not finished
+  AudioZero.play(Opstart);
 }
 
 void loop() {
 //MAIN MENU
 mainmenu:
+File Opstart = SD.open("1.wav");
+AudioZero.play(Opstart);
   delay(2000);
   Serial.println("Selecteer berekening");
   selector = analogRead(analogSelect);
